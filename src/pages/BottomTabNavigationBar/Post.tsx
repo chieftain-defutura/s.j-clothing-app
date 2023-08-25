@@ -16,6 +16,7 @@ const Post = () => {
           <Search />
         </View>
       </View>
+
       <View style={styles.imageContent}>
         <Image
           style={styles.tShirtImg}
