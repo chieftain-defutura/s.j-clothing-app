@@ -1,12 +1,13 @@
-import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import { COLORS } from "../../styles/theme";
-import Setting from "../../assets/icons/Settings";
-import Search from "../../assets/icons/Search";
+import React from 'react'
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
+import { COLORS } from '../../styles/theme'
+import Setting from '../../assets/icons/Settings'
+import Search from '../../assets/icons/Search'
+import PostCard from '../../components/PostCard'
 
 const Post = () => {
   return (
-    <View style={styles.postWrapper}>
+    <ScrollView style={styles.postWrapper}>
       <View style={styles.postHead}>
         <View>
           <Text style={styles.text}>Most viewed</Text>
@@ -17,39 +18,37 @@ const Post = () => {
         </View>
       </View>
 
-      <View style={styles.imageContent}>
-        <Image
-          style={styles.tShirtImg}
-          source={require("../../assets/images/t-shirt.png")}
-        />
-      </View>
-    </View>
-  );
-};
+      <PostCard />
+      <PostCard />
+      <PostCard />
+      <PostCard />
+    </ScrollView>
+  )
+}
 
-export default Post;
+export default Post
 
 const styles = StyleSheet.create({
   postWrapper: {
-    backgroundColor: "#FFEFFF",
+    backgroundColor: 'red',
     padding: 16,
   },
   postHead: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   text: {
     color: COLORS.textClr,
     fontSize: 16,
   },
   postIcons: {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
     gap: 24,
   },
   imageContent: {
-    backgroundColor: "#FFBBE9",
+    backgroundColor: '#FFBBE9',
     margin: 16,
     width: 328,
     height: 360,
@@ -65,4 +64,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     marginHorizontal: 14,
   },
-});
+  postCard: {
+    backgroundColor: 'yellow',
+  },
+})
