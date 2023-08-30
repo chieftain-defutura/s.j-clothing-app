@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dimensions } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Post from './src/pages/BottomTabNavigationBar/Post'
@@ -12,39 +13,24 @@ import AccountIcon from './src/assets/icons/AccountIcon'
 import PremiumIcon from './src/assets/icons/PremiumIcon'
 import MidLevelIcon from './src/assets/icons/MidLevelIcon'
 import { COLORS } from './src/styles/theme'
-import { Text, View, StyleSheet, Image } from 'react-native'
-import BottomBar from './src/assets/icons/BottomBar'
+import { Text, View, StyleSheet, Image, SafeAreaView } from 'react-native'
+import { useFonts } from '@use-expo/font'
+import Header from './src/components/Header'
 
 const Stack = createNativeStackNavigator()
-
 const Tab = createBottomTabNavigator()
-
 const windowWidth = Dimensions.get('window').width
 const windowHeight = Dimensions.get('window').height
+
+const customFonts = {
+  Gilroy: require('./src/assets/fonts/Gilroy-Regular.ttf'),
+}
 
 function TabNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarIconStyle: { backgroundColor: 'white', alignContent: 'center' },
-        tabBarBackground: () => (
-          <View
-            style={{
-              position: 'absolute',
-              bottom: -20,
-              left: -80,
-            }}
-          >
-            <BottomBar width={windowWidth} height={90} />
-          </View>
-        ),
-        tabBarStyle: {
-          backgroundColor: 'orange',
-          display: 'flex',
-          justifyContent: 'space-between',
-        },
-      }}
       initialRouteName='Home'
+      screenOptions={{ tabBarStyle: { padding: 10, backgroundColor: COLORS.textClr } }}
     >
       <Tab.Screen
         name='Post'
@@ -58,6 +44,7 @@ function TabNavigator() {
             ) : (
               <HomeIcon color={color} width={40} height={40} />
             ),
+          headerShown: false,
         }}
         component={Post}
       />
@@ -73,6 +60,7 @@ function TabNavigator() {
             ) : (
               <MidLevelIcon color={color} width={40} height={40} />
             ),
+          headerShown: false,
         }}
         component={MidLevel}
       />
@@ -88,6 +76,7 @@ function TabNavigator() {
             ) : (
               <PremiumIcon color={color} width={40} height={40} />
             ),
+          headerShown: false,
         }}
         component={Premium}
       />
@@ -103,6 +92,7 @@ function TabNavigator() {
             ) : (
               <AccountIcon color={color} width={40} height={40} />
             ),
+          headerShown: false,
         }}
         component={Account}
       />
@@ -113,12 +103,24 @@ function TabNavigator() {
 function StackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Stack' options={{ headerShown: true }} component={TabNavigator} />
+      <Stack.Screen
+        name='Stack'
+        options={{
+          headerShown: false,
+          headerBackground: () => <Header />,
+        }}
+        component={TabNavigator}
+      />
     </Stack.Navigator>
   )
 }
 
 export default function App() {
+  const [loaded] = useFonts(customFonts)
+
+  if (!loaded) {
+    return null
+  }
   return (
     <NavigationContainer>
       <StackNavigator />

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Svg, { SvgProps, G, Path, Defs, ClipPath } from 'react-native-svg'
-const SvgComponent = (props: SvgProps) => (
-  <Svg width={20} height={20} fill='none' {...props}>
+const CartLogo = (props: SvgProps) => (
+  <Svg width={props.width} height={props.height} fill='none' {...props}>
     <G clipPath='url(#a)'>
       <Path
         fill='#fff'
@@ -16,4 +16,4 @@ const SvgComponent = (props: SvgProps) => (
     </Defs>
   </Svg>
 )
-export default SvgComponent
+export default CartLogo

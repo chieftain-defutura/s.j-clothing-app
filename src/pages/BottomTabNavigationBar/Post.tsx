@@ -17,11 +17,12 @@ const Post = () => {
           <Search />
         </View>
       </View>
-
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
+      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </View>
     </ScrollView>
   )
 }
@@ -30,7 +31,7 @@ export default Post
 
 const styles = StyleSheet.create({
   postWrapper: {
-    backgroundColor: 'red',
+    backgroundColor: COLORS.backgroundClr,
     padding: 16,
   },
   postHead: {
